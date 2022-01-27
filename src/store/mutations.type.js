@@ -11,3 +11,6 @@ export const TAG_ADD = "addTag";
 export const TAG_REMOVE = "removeTag";
 export const UPDATE_ARTICLE_IN_LIST = "updateArticleInList";
 export const RESET_STATE = "resetModuleState";
+export const SET_AFFAIR = "setAffair";
+export const SET_AFFAIR_FIELDS = "setAffairFields";
+export const SET_AFFAIRS = "setAffairs";

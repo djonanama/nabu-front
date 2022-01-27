@@ -69,7 +69,7 @@ import { LOGOUT, UPDATE_USER } from "@/store/actions.type";
 export default {
   name: "RwvSettings",
   computed: {
-    ...mapGetters(["currentUser"])
+    ...mapGetters(["currentUser", "isAuthenticated"])
   },
   methods: {
     updateSettings() {

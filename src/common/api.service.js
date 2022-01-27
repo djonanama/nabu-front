@@ -55,6 +55,29 @@ export const TagsService = {
   }
 };
 
+export const AffairsService = {
+  get(slug) {
+    return ApiService.get("affairs", slug);
+  }
+};
+
+export const AffairsFieldsService = {
+  get() {
+    return ApiService.get("affairs_fields");
+  }
+};
+
+export const SearchService = {
+  query(params) {
+    return ApiService.query("affairs", {
+      params: params
+    });
+  },
+  get(slug) {
+    return ApiService.get("affairs", slug);
+  }
+};
+
 export const ArticlesService = {
   query(type, params) {
     return ApiService.query("articles" + (type === "feed" ? "/feed" : ""), {

@@ -1,96 +1,84 @@
 <template>
-  <nav class="navbar navbar-light">
+  <mdb-navbar style="margin-bottom:24px;">
     <div class="container">
-      <router-link class="navbar-brand" :to="{ name: 'home' }">
-        Nabu
-      </router-link>
-      <ul v-if="!isAuthenticated" class="nav navbar-nav pull-xs-right">
-        <li class="nav-item">
-          <router-link
-            class="nav-link"
-            active-class="active"
-            exact
-            :to="{ name: 'home' }"
-          >
-            Home
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link
-            class="nav-link"
-            active-class="active"
-            exact
-            :to="{ name: 'login' }"
-          >
-            <i class="ion-compose"></i>Sign in
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link
-            class="nav-link"
-            active-class="active"
-            exact
-            :to="{ name: 'register' }"
-          >
-            <i class="ion-compose"></i>Sign up
-          </router-link>
-        </li>
-      </ul>
-      <ul v-else class="nav navbar-nav pull-xs-right">
-        <li class="nav-item">
-          <router-link
-            class="nav-link"
-            active-class="active"
-            exact
-            :to="{ name: 'home' }"
-          >
-            Home
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link
-            class="nav-link"
-            active-class="active"
-            :to="{ name: 'article-edit' }"
-          >
-            <i class="ion-compose"></i>&nbsp;New Article
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link
-            class="nav-link"
-            active-class="active"
-            exact
-            :to="{ name: 'settings' }"
-          >
-            <i class="ion-gear-a"></i>&nbsp;Settings
-          </router-link>
-        </li>
-        <li class="nav-item" v-if="currentUser.username">
-          <router-link
-            class="nav-link"
-            active-class="active"
-            exact
-            :to="{
-              name: 'profile',
-              params: { username: currentUser.username }
-            }"
-          >
-            {{ currentUser.username }}
-          </router-link>
-        </li>
-      </ul>
+      <mdb-navbar-brand
+        href="#"
+        class="font-weight-bold text-monospace"
+        :to="{ name: 'home' }"
+      >
+        NABU
+      </mdb-navbar-brand>
+      <mdb-navbar-toggler>
+        <mdb-navbar-nav right>
+          <mdb-nav-item v-if="!isAuthenticated" :to="{ name: 'login' }">
+            <router-link :to="{ name: 'login' }">
+              <mdb-icon icon="sign-in-alt" size="lg" />
+            </router-link>
+          </mdb-nav-item>
+
+          <mdb-dropdown tag="li" v-if="isAuthenticated" class="nav-item">
+            <mdb-dropdown-toggle tag="a" navLink slot="toggle" waves-fixed
+              ><mdb-icon icon="user" size="lg" />
+            </mdb-dropdown-toggle>
+            <mdb-dropdown-menu>
+              <h6 class="dropdown-header" v-if="currentUser.username">
+                {{ currentUser.username }}
+              </h6>
+              <mdb-dropdown-item :to="{ name: 'settings' }"
+                >Настройки</mdb-dropdown-item
+              >
+              <div class="dropdown-divider"></div>
+              <mdb-dropdown-item @click="logout">Выйти</mdb-dropdown-item>
+            </mdb-dropdown-menu>
+          </mdb-dropdown>
+        </mdb-navbar-nav>
+      </mdb-navbar-toggler>
     </div>
-  </nav>
+  </mdb-navbar>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import { LOGOUT } from "@/store/actions.type";
+
+import {
+  mdbDropdown,
+  mdbDropdownToggle,
+  mdbDropdownMenu,
+  mdbDropdownItem,
+  mdbContainer,
+  mdbNavbar,
+  mdbNavbarBrand,
+  mdbNavbarToggler,
+  mdbNavbarNav,
+  mdbNavItem,
+  mdbIcon
+} from "mdbvue";
 
 export default {
   name: "RwvHeader",
   computed: {
     ...mapGetters(["currentUser", "isAuthenticated"])
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch(LOGOUT).then(() => {
+        this.$router.push({ name: "home" });
+      });
+    }
+  },
+  components: {
+    mdbNavbar,
+    mdbNavbarBrand,
+    mdbNavbarToggler,
+    mdbNavbarNav,
+    mdbNavItem,
+    mdbContainer,
+    mdbDropdown,
+    mdbDropdownToggle,
+    mdbDropdownMenu,
+    mdbDropdownItem,
+    mdbIcon
   }
 };
 </script>

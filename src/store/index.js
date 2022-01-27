@@ -5,6 +5,8 @@ import home from "./home.module";
 import auth from "./auth.module";
 import article from "./article.module";
 import profile from "./profile.module";
+import affairs from "./affairs.module";
+import search from "./search.module";
 
 Vue.use(Vuex);
 
@@ -13,6 +15,8 @@ export default new Vuex.Store({
     home,
     auth,
     article,
-    profile
+    profile,
+    affairs,
+    search
   }
 });

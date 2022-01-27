@@ -4,6 +4,7 @@ import Router from "vue-router";
 Vue.use(Router);
 
 export default new Router({
+  mode: "history",
   routes: [
     {
       path: "/",
@@ -25,6 +26,11 @@ export default new Router({
           component: () => import("@/views/HomeTag")
         }
       ]
+    },
+    {
+      name: "search",
+      path: "/search",
+      component: () => import("@/views/Search")
     },
     {
       name: "login",
@@ -71,6 +77,12 @@ export default new Router({
       path: "/editor/:slug?",
       props: true,
       component: () => import("@/views/ArticleEdit")
+    },
+    {
+      name: "affairs",
+      path: "/affairs/:slug",
+      props: true,
+      component: () => import("@/views/Affairs")
     }
   ]
 });

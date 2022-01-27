@@ -20,3 +20,7 @@ export const LOGIN = "login";
 export const LOGOUT = "logout";
 export const REGISTER = "register";
 export const UPDATE_USER = "updateUser";
+export const FETCH_AFFAIR = "fetchAffair";
+export const FETCH_AFFAIRS = "fetchAffairs";
+export const AFFAIR_RESET_STATE = "resetAffairState";
+export const FETCH_AFFAIR_FIELDS = "fetchAffairFields";
