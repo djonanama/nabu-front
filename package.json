@@ -48,6 +48,7 @@
   "name": "realworld-vue",
   "scripts": {
     "build": "cross-env BABEL_ENV=dev vue-cli-service build",
+    "build_prod": "cross-env BABEL_ENV=dev BACK_URL=www.nabu.link vue-cli-service build",
     "lint": "vue-cli-service lint",
     "serve": "cross-env BABEL_ENV=dev vue-cli-service serve",
     "test": "cross-env BABEL_ENV=test jest --coverage"

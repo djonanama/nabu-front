@@ -1,2 +1,2 @@
-export const API_URL = "http://localhost:8081/api";
+export const API_URL = process.env.BACK_URL || "http://localhost/api"; // location.host
 export default API_URL;
